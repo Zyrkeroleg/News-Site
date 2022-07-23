@@ -26,15 +26,6 @@ def register(request):
 def login(request):
     return render(request, 'news/login.html')
 
-# def test(request):
-#     objects = ['1','2','3','4','5','6','7','8','9',]
-#     paginator = Paginator(objects, 2)
-#     page_num = request.GET.get('page', 1)
-#     page_objects = paginator.get_page(page_num)
-#     return render(request, 'news/test.html', {'page_obj': page_objects})
-#
-
-
 class HomeNews(MyMixin, ListView):
     model = News
     template_name = 'news/index.html'
@@ -69,9 +60,7 @@ class News_by_category(MyMixin, ListView):
 def get_category(request, category_id):
     news = News.objects.filter(category_id=category_id)
     category = Category.objects.get(pk=category_id)
-    return render(request, 'news/category.html', {'news': news,
-                                                  'category': category,
-                                                  })
+    return render(request, 'news/category.html', {'news': news,'category': category,})
 
 class ViewNews(DetailView):
     model = News
@@ -86,4 +75,3 @@ class ViewNews(DetailView):
 class CreateNews(CreateView):
     form_class = NewsForm
     template_name = 'news/add_news.html'
-    # success_url = reverse_lazy('home')
