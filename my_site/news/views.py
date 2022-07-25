@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import News, Category
-from .forms import NewsForm
+from .forms import NewsForm, UserRegisterForm
 from django.views.generic import ListView, DetailView, CreateView
 from .utils import MyMixin
 from django.core.paginator import Paginator
@@ -10,7 +10,7 @@ from django.contrib import messages
 
 def register(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, "Вы успешно зарегистрировались")
@@ -18,7 +18,7 @@ def register(request):
         else:
             messages.error(request, "Ошибка регистрации")
     else:
-        form = UserCreationForm()
+        form = UserRegisterForm()
     return render(request, "news/register.html", {"form": form})
 
 

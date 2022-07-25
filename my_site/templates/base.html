@@ -18,11 +18,8 @@
             {% block sidebar %}SIDEBAR{% endblock %}
         </div>
         <div class="col-md-9">
-
             {% if messages %}
-
             {% for message in messages %}
-
             {% if message.tags == 'error' %}
             <div class="alert alert-danger" role="alert">
                     {{ message }}
@@ -34,7 +31,6 @@
             {% endif %}
             {% endfor %}
             {% endif %}
-
             {% block content %}CONTENT{% endblock %}
             {% if page_obj.has_other_pages%}
             <nav aria-label="...">
