@@ -7,8 +7,7 @@ from .utils import MyMixin
 from django.core.paginator import Paginator
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from django.contrib.auth import login, logout
-
+from django.contrib.auth import login
 
 def register(request):
     if request.method == "POST":
@@ -26,12 +25,12 @@ def register(request):
 
 
 def user_login(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = UserLoginForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('home')
+            return redirect("home")
     else:
         form = UserLoginForm
     return render(request, "news/login.html", {"form": form})
